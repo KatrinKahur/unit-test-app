@@ -14,9 +14,12 @@ function MainPage(){
     const [responseReceived, setResponseReceived] = React.useState(false);
 
     React.useEffect(() => {
+        setResponse("");
+    }, [fileContent]);
+    
+    React.useEffect(() => {
         if(sendRequest) {
             if(fileContent.length > 0){
-                setResponse("");
                 getResponse(generatePrompt(fileContent)).then((data) => {
                     setResponse(data);
                 }).then(() => setResponseReceived(true)).catch((err) => console.error(err));
