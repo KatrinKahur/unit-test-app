@@ -48,6 +48,8 @@ function MainPage(){
                     onClick={() => setSendRequest(true)}>
                 Generate unit tests!
             </button>
+            
+            
             <div className="codeBlockWrapper">
                 <div className="requestBlockWrapper">
                     <h3>Java class: </h3>
@@ -61,6 +63,17 @@ function MainPage(){
                         <SyntaxHighlighter language="java" style={railscasts}>{response}</SyntaxHighlighter>
                     </div>
                 </div>
+                <form className="testBoxes">
+                    <label>
+                        Code Coverage:
+                        <input type="text" name="name" />
+                    </label>
+                    <label>
+                        Passed Unit Tests:
+                        <input type="text" name="name" />
+                    </label>
+                    <input type="submit" value="Submit" />
+                </form>
             </div>
         </div>
     )
