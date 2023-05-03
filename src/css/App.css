@@ -58,6 +58,8 @@ input[type=file]::file-selector-button:hover {
 .inputButt {
   text-align: center;
   margin-top: 3%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .responseTitle {
@@ -65,15 +67,62 @@ input[type=file]::file-selector-button:hover {
   margin-top: 3%;
 }
 
+.requestBlock {
+  text-align: left;
+  height: 550px;
+  /*background-color: rgb(223, 223, 223);*/
+  background-color: rgb(35, 35, 35);
+  margin-right: 15px;
+  padding: 30px;
+  border-radius: 15px;
+  overflow-y: auto;
+}
+
 .responseBlock {
-  width: 70%;
-  height: 500px;
-  background-color: rgb(223, 223, 223);
+  text-align: left;
+  height: 550px;
+  /*background-color: rgb(223, 223, 223);*/
+  background-color: rgb(35, 35, 35);
   margin: 0 auto;
   padding: 30px;
   border-radius: 15px;
+  overflow-y: auto;
+}
+
+.requestBlockWrapper {
+  margin-top: 3%;
+  display: inline-block;
+  text-align: left;
+  width: 40%;
+}
+
+.responseBlockWrapper {
+  margin-top: 3%;
+  display: inline-block;
+  text-align: left;
+  width: 40%;
+}
+
+.codeBlockWrapper {
+  text-align: center;
 }
 
 pre {
   white-space:pre-wrap;
+}
+
+.testGeneratorButton {
+  display: block;
+  border-radius: 5px;
+  width: 277px;
+  height: 35px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1%;
+  background-color: #939393;
+}
+
+.testGeneratorButton:hover {
+  background-color: #b8b8b8;
+  border: none;
 }

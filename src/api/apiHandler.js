@@ -8,10 +8,9 @@ async function getResponse(request) {
         const response = await openai.createChatCompletion({
             model: "gpt-3.5-turbo",
             messages: [{"role": "user", "content": request}],
-            max_tokens: 100,
+            max_tokens: 1000,
             temperature: 0.6
         });
-        console.log(response.data.choices[0].message.content);
         return response.data.choices[0].message.content;
     } catch (error) {
         console.log("Error: " + error);
