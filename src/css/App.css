@@ -47,11 +47,11 @@ input[type=file]::file-selector-button {
   height: 35px;
   border: none;
   border-radius: 5px;
-  background-color: #939393;
+  background-color: #c5c5c5;
 }
 
 input[type=file]::file-selector-button:hover {
-  background-color: #b8b8b8;
+  background-color: #a6a6a6;
   border: none;
 }
 
@@ -119,14 +119,41 @@ pre {
   margin-left: auto;
   margin-right: auto;
   margin-top: 1%;
-  background-color: #939393;
-}
-
-.testGeneratorButton:hover {
-  background-color: #b8b8b8;
+  background-color: #c5c5c5;
   border: none;
 }
 
-.testBoxes {
+.testGeneratorButton:hover {
+  background-color: #a6a6a6;
+  border: none;
+}
+
+.testForm {
   margin-bottom: 100px;
+}
+
+.testText {
+  font-size: 20px;
+}
+
+.testSubmitButt {
+  width: 80px;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  background-color: #c5c5c5;
+}
+
+.testSubmitButt:hover {
+  background-color: #a6a6a6;
+  border: none;
+}
+
+.inputSquare {
+  padding: 20px;
+}
+
+.inputBox {
+  width: 400px;
+  height: 500px;
 }

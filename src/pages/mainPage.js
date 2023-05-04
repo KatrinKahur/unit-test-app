@@ -34,7 +34,9 @@ function MainPage(){
             setResponseReceived(false);
         }
     }, [responseReceived])
+
     return(
+        <body>
         <div>
             <h1 className="toolName">Java Unit Test Generation AI (JUTGAI)</h1>
             {/*Generation Of Unit Test In Java (GOUTIJ)*/}
@@ -63,19 +65,22 @@ function MainPage(){
                         <SyntaxHighlighter language="java" style={railscasts}>{response}</SyntaxHighlighter>
                     </div>
                 </div>
-                <form className="testBoxes">
-                    <label>
-                        Code Coverage:
-                        <input type="text" name="name" />
-                    </label>
-                    <label>
-                        Passed Unit Tests:
-                        <input type="text" name="name" />
-                    </label>
-                    <input type="submit" value="Submit" />
+                <form className="testForm">
+                    <div>
+                        <label className="inputSquare">
+                            <p className="testText">Code Coverage</p>
+                            <textarea type="text" name="name" className="inputBox"/>
+                        </label>
+                        <label className="inputSquare">
+                            <p className="testText">Passed Unit Tests</p>
+                            <textarea type="text" name="name" className="inputBox"/>
+                        </label>
+                    </div>
+                    <input type="submit" value="Submit" className="testSubmitButt"/>
                 </form>
             </div>
-        </div>
+        </div>    
+        </body>
     )
 } 
 
