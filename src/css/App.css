@@ -128,6 +128,23 @@ pre {
   border: none;
 }
 
+.moreTestsButton {
+  display: block;
+  border-radius: 5px;
+  width: 227px;
+  padding-block: 6px;
+  margin-top: 1%;
+  margin-left: auto;
+  margin-right: 190px;
+  background-color: #c5c5c5;
+  border: none;
+}
+
+.moreTestsButton:hover {
+  background-color: #a6a6a6;
+  border: none;
+}
+
 .testForm {
   margin-bottom: 100px;
 }

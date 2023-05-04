@@ -19,8 +19,8 @@ function MainPage(){
     const [generateUnitTests, setGenerateUnitTests] = React.useState(false);
     const [saveToDatabase, setSaveToDatabase] = React.useState(false);
     const [responseReceived, setResponseReceived] = React.useState(false);
-    const promptType = "zero-shot";
-    const maxTokens = 2500;
+    let promptType = "zero-shot";
+    let maxTokens = 2712;
     const temp = 1;
 
     React.useEffect(() => {
@@ -31,7 +31,8 @@ function MainPage(){
             setResponseReceived(false);
             setSaveToDatabase(false);
             clearStateVariables([setLineCoverage,
-                setBranchCoverage, setPassedUnitTests, setFileContent, setResponse])
+                setBranchCoverage, setPassedUnitTests, setFileContent, setResponse]);
+            promptType = "zero-shot";
         }
     }, [saveToDatabase]);
 
@@ -43,7 +44,7 @@ function MainPage(){
         if(generateUnitTests) {
             getResponse(generatePrompt(fileContent, promptType), maxTokens, temp).then((data) => {
                 if(typeof data === 'string'){
-                    setResponse(data);
+                    setResponse(response + "\n" + data);
                 } else {
                     setResponse("Oops! Something went wrong.");
                 }
@@ -101,10 +102,13 @@ function MainPage(){
                         </SyntaxHighlighter>
                     </div>
                 </div>
+                    <button className="moreTestsButton" onClick={() => { promptType = "more";
+                        setIsLoading(true);
+                        setGenerateUnitTests(true);
+                    }}>Generate more</button>
                 <form className="testForm" id="result-form"
-                      onSubmit={(event) => {
-                          event.preventDefault();
-                          setSaveToDatabase(true);}}>
+                      onSubmit={(event) =>
+                      {event.preventDefault();setSaveToDatabase(true);}}>
                     <div>
                         <label className="inputSquare">
                             <p className="testText">Line Coverage</p>
