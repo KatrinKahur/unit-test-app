@@ -4,9 +4,6 @@ async function getResponse(request, maxTokens, temp) {
         apiKey: process.env.REACT_APP_OPENAI_API_KEY
     });
     const openai = new OpenAIApi(configuration);
-    console.log("Request is: ", request)
-    console.log("Temp is: ", temp)
-    console.log("Max tokens: ", maxTokens)
     try {
         const response = await openai.createChatCompletion({
             model: "gpt-3.5-turbo",

@@ -3,7 +3,6 @@ function generatePrompt(request, promptType) {
     if(promptType === "zero-shot"){
         promptBody = zeroShotPrompt(request);
     }
-    console.log("Prompt body: \n", promptBody);
     return promptBody;
 }
 
