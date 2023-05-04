@@ -7,7 +7,7 @@ import documentTestAttempt from "../database/dbHandler";
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import railscasts from "react-syntax-highlighter/dist/cjs/styles/hljs/railscasts";
 import {Spinner} from "react-bootstrap";
-
+import {clearStateVariables} from "../utils/stateVariables";
 function MainPage(){
 
     const [isLoading, setIsLoading] = React.useState(false);
@@ -20,30 +20,33 @@ function MainPage(){
     const [saveToDatabase, setSaveToDatabase] = React.useState(false);
     const [responseReceived, setResponseReceived] = React.useState(false);
     const promptType = "zero-shot";
-    const maxTokens = 2050;
+    const maxTokens = 2500;
     const temp = 1;
-    let id = 4;
 
     React.useEffect(() => {
         if(responseReceived && saveToDatabase){
-            documentTestAttempt(promptType, id++, fileContent, response, lineCoverage, branchCoverage,
+            documentTestAttempt(promptType, fileContent, response, lineCoverage, branchCoverage,
                 passedUnitTests, maxTokens, temp);
+            document.getElementById("result-form").reset();
             setResponseReceived(false);
             setSaveToDatabase(false);
-            setLineCoverage("");
-            setBranchCoverage("");
-            setPassedUnitTests("");
-            setFileContent("");
-            setResponse("");
-
+            clearStateVariables([setLineCoverage,
+                setBranchCoverage, setPassedUnitTests, setFileContent, setResponse])
         }
-    }, [saveToDatabase])
+    }, [saveToDatabase]);
+
+    React.useEffect(() => {
+        setResponse("");
+    }, [fileContent])
 
     React.useEffect(() => {
         if(generateUnitTests) {
             getResponse(generatePrompt(fileContent, promptType), maxTokens, temp).then((data) => {
-                console.log("Data is: ", data);
-                setResponse(data);
+                if(typeof data === 'string'){
+                    setResponse(data);
+                } else {
+                    setResponse("Oops! Something went wrong.");
+                }
             }).then(() => {
                 setIsLoading(false);
                 setResponseReceived(true);
@@ -98,7 +101,10 @@ function MainPage(){
                         </SyntaxHighlighter>
                     </div>
                 </div>
-                <form className="testForm" onSubmit={() => {setSaveToDatabase(true);}}>
+                <form className="testForm" id="result-form"
+                      onSubmit={(event) => {
+                          event.preventDefault();
+                          setSaveToDatabase(true);}}>
                     <div>
                         <label className="inputSquare">
                             <p className="testText">Line Coverage</p>
