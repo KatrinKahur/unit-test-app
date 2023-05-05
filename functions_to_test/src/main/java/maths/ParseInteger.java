@@ -2,13 +2,6 @@ package maths;
 
 public class ParseInteger {
 
-    public static void main(String[] args) {
-        assert parseInt("123") == Integer.parseInt("123");
-        assert parseInt("-123") == Integer.parseInt("-123");
-        assert parseInt("0123") == Integer.parseInt("0123");
-        assert parseInt("+123") == Integer.parseInt("+123");
-    }
-
     /**
      * Parse a string to integer
      *

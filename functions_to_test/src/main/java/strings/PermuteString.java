@@ -23,13 +23,6 @@ public class PermuteString {
         return String.valueOf(b);
     }
 
-    public static void main(String[] args) {
-        String str = "ABC";
-        int len = str.length();
-        System.out.println("All the permutations of the string are: ");
-        generatePermutation(str, 0, len);
-    }
-
     //Function for generating different permutations of the string
     public static void generatePermutation(String str, int start, int end) {
         //Prints the permutations

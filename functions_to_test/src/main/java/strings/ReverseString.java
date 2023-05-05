@@ -4,12 +4,6 @@ package strings;
  * Reverse String using different version
  */
 public class ReverseString {
-
-    public static void main(String[] args) {
-        assert reverse("abc123").equals("321cba");
-        assert reverse2("abc123").equals("321cba");
-    }
-
     /**
      * easiest way to reverses the string str and returns it
      *

@@ -1,8 +1,6 @@
 package searches;
 
 import devutils.*;
-import java.util.Random;
-import java.util.stream.Stream;
 
 /**
  * Linear search is the easiest search algorithm It works with sorted and
@@ -15,7 +13,6 @@ import java.util.stream.Stream;
  *
  * @author Varun Upadhyay (https://github.com/varunu28)
  * @author Podshivalov Nikita (https://github.com/nikitap492)
- * @see BinarySearch
  * @see SearchAlgorithm
  */
 public class LinearSearch implements SearchAlgorithm {
@@ -35,30 +32,5 @@ public class LinearSearch implements SearchAlgorithm {
             }
         }
         return -1;
-    }
-
-    public static void main(String[] args) {
-        // just generate data
-        Random r = new Random();
-        int size = 200;
-        int maxElement = 100;
-        Integer[] integers = Stream
-            .generate(() -> r.nextInt(maxElement))
-            .limit(size)
-            .toArray(Integer[]::new);
-
-        // the element that should be found
-        Integer shouldBeFound = integers[r.nextInt(size - 1)];
-
-        LinearSearch search = new LinearSearch();
-        int atIndex = search.find(integers, shouldBeFound);
-
-        System.out.printf(
-                "Should be found: %d. Found %d at index %d. An array length %d%n",
-                shouldBeFound,
-                integers[atIndex],
-                atIndex,
-                size
-        );
     }
 }

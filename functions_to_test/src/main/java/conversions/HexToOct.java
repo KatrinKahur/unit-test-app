@@ -1,7 +1,5 @@
 package conversions;
 
-import java.util.Scanner;
-
 /**
  * Converts any Hexadecimal Number to Octal
  *
@@ -45,28 +43,5 @@ public class HexToOct {
         }
         octnum /= 10;
         return octnum;
-    }
-
-    /**
-     * Main method that gets the hex input from user and converts it into octal.
-     *
-     * @param args arguments
-     */
-    public static void main(String[] args) {
-        String hexadecnum;
-        int decnum, octalnum;
-        Scanner scan = new Scanner(System.in);
-
-        System.out.print("Enter Hexadecimal Number : ");
-        hexadecnum = scan.nextLine();
-
-        // first convert hexadecimal to decimal
-        decnum = hex2decimal(hexadecnum); // Pass the string to the hex2decimal function and get the decimal form in
-        // variable decnum
-
-        // convert decimal to octal
-        octalnum = decimal2octal(decnum);
-        System.out.println("Number in octal: " + octalnum);
-        scan.close();
     }
 }

@@ -40,18 +40,4 @@ public class BinaryToHexadecimal {
         }
         return hex;
     }
-
-    /**
-     * Main method
-     *
-     * @param args Command line arguments
-     */
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter binary number:");
-        int binary = sc.nextInt();
-        String hex = binToHex(binary);
-        System.out.println("Hexadecimal Code:" + hex);
-        sc.close();
-    }
 }

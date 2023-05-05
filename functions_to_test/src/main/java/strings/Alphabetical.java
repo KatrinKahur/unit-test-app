@@ -6,15 +6,6 @@ package strings;
  * alphabet. Wikipedia: https://en.wikipedia.org/wiki/Alphabetical_order
  */
 class Alphabetical {
-
-    public static void main(String[] args) {
-        assert !isAlphabetical("123abc");
-        assert isAlphabetical("aBC");
-        assert isAlphabetical("abc");
-        assert !isAlphabetical("xyzabc");
-        assert isAlphabetical("abcxyz");
-    }
-
     /**
      * Check if a string is alphabetical order or not
      *

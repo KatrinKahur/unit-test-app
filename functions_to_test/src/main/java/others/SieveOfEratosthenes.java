@@ -50,11 +50,4 @@ public class SieveOfEratosthenes {
         PRIME,
         NOT_PRIME,
     }
-
-    public static void main(String[] args) {
-        int n = 100;
-        System.out.println("Searching for all primes from zero to " + n);
-        int[] primes = findPrimesTill(n);
-        System.out.println("Found: " + Arrays.toString(primes));
-    }
 }

@@ -55,48 +55,4 @@ public class DepthFirstSearch {
             );
         }
     }
-
-    public static void main(final String[] args) {
-        final Node rootNode = new Node(
-            "A",
-            List.of(
-                new Node(
-                    "B",
-                    List.of(
-                        new Node("D"),
-                        new Node("F", List.of(new Node("H"), new Node("I")))
-                    )
-                ),
-                new Node("C", List.of(new Node("G"))),
-                new Node("E")
-            )
-        );
-
-        {
-            final String expected = "I";
-
-            final Node result = search(rootNode, expected)
-                .orElseThrow(() -> new AssertionError("Node not found!"));
-
-            assertThat(result.getName(), expected);
-        }
-
-        {
-            final String expected = "G";
-
-            final Node result = search(rootNode, expected)
-                .orElseThrow(() -> new AssertionError("Node not found!"));
-
-            assertThat(result.getName(), expected);
-        }
-
-        {
-            final String expected = "E";
-
-            final Node result = search(rootNode, expected)
-                .orElseThrow(() -> new AssertionError("Node not found!"));
-
-            assertThat(result.getName(), expected);
-        }
-    }
 }

@@ -20,7 +20,7 @@ function MainPage(){
     const [saveToDatabase, setSaveToDatabase] = React.useState(false);
     const [responseReceived, setResponseReceived] = React.useState(false);
     let promptType = "zero-shot";
-    let maxTokens = 2712;
+    let maxTokens = 4096-686;
     const temp = 1;
 
     React.useEffect(() => {
