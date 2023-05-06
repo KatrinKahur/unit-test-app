@@ -8,6 +8,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import railscasts from "react-syntax-highlighter/dist/cjs/styles/hljs/railscasts";
 import {Spinner} from "react-bootstrap";
 import {clearStateVariables} from "../utils/stateVariables";
+import {countTokens} from "../utils/tokenCounter";
 function MainPage(){
 
     const [isLoading, setIsLoading] = React.useState(false);
@@ -20,8 +21,8 @@ function MainPage(){
     const [saveToDatabase, setSaveToDatabase] = React.useState(false);
     const [responseReceived, setResponseReceived] = React.useState(false);
     let promptType = "zero-shot";
-    let maxTokens = 4096-686;
-    const temp = 1;
+    let maxTokens = 4096 - countTokens(generatePrompt(fileContent, promptType));
+    const temp = 0.5;
 
     React.useEffect(() => {
         if(responseReceived && saveToDatabase){
