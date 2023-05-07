@@ -1,6 +1,5 @@
 import handleFile from "../utils/fileHandler";
 import React from "react";
-import getResponse from "../api/apiHandler";
 import generatePrompt from "../utils/promptHandler";
 import '../css/App.css';
 import documentTestAttempt from "../database/dbHandler";
@@ -9,8 +8,13 @@ import railscasts from "react-syntax-highlighter/dist/cjs/styles/hljs/railscasts
 import {Spinner} from "react-bootstrap";
 import {clearStateVariables} from "../utils/stateVariables";
 import {countTokens} from "../utils/tokenCounter";
-function MainPage(){
+import handleRequest from "../api/apiHandler";
 
+/**
+ * This function represents the main page of the JUTGAI application.
+ * @returns {JSX.Element} the main page
+ */
+function MainPage(){
     const [isLoading, setIsLoading] = React.useState(false);
     const [fileContent, setFileContent] = React.useState("");
     const [response, setResponse] = React.useState("");
@@ -20,19 +24,21 @@ function MainPage(){
     const [generateUnitTests, setGenerateUnitTests] = React.useState(false);
     const [saveToDatabase, setSaveToDatabase] = React.useState(false);
     const [responseReceived, setResponseReceived] = React.useState(false);
+    const [explanation, setExplanation] = React.useState("");
     let promptType = "zero-shot";
+    //let maxTokens = 4096 - countTokens(generatePrompt(fileContent, "stepOne"));
     let maxTokens = 4096 - countTokens(generatePrompt(fileContent, promptType));
-    const temp = 0.5;
+    const temp = 1;
 
     React.useEffect(() => {
         if(responseReceived && saveToDatabase){
             documentTestAttempt(promptType, fileContent, response, lineCoverage, branchCoverage,
-                passedUnitTests, maxTokens, temp);
+                passedUnitTests, maxTokens, temp, explanation);
             document.getElementById("result-form").reset();
             setResponseReceived(false);
             setSaveToDatabase(false);
             clearStateVariables([setLineCoverage,
-                setBranchCoverage, setPassedUnitTests, setFileContent, setResponse]);
+                setBranchCoverage, setPassedUnitTests, setFileContent, setResponse, setExplanation]);
             promptType = "zero-shot";
         }
     }, [saveToDatabase]);
@@ -43,9 +49,12 @@ function MainPage(){
 
     React.useEffect(() => {
         if(generateUnitTests) {
-            getResponse(generatePrompt(fileContent, promptType), maxTokens, temp).then((data) => {
-                if(typeof data === 'string'){
+            handleRequest(fileContent, promptType, maxTokens, temp).then((data) => {
+                if (typeof data === 'string'){
                     setResponse(response + "\n" + data);
+                } else if (typeof data === 'object') {
+                    setResponse(response + "\n" + data.response);
+                    setExplanation(data.explanation);
                 } else {
                     setResponse("Oops! Something went wrong.");
                 }
