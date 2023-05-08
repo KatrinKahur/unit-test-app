@@ -25,10 +25,10 @@ function MainPage(){
     const [saveToDatabase, setSaveToDatabase] = React.useState(false);
     const [responseReceived, setResponseReceived] = React.useState(false);
     const [explanation, setExplanation] = React.useState("");
-    let promptType = "zero-shot";
-    //let maxTokens = 4096 - countTokens(generatePrompt(fileContent, "stepOne"));
-    let maxTokens = 4096 - countTokens(generatePrompt(fileContent, promptType));
-    const temp = 1;
+    let promptType = "multi-step";
+    let maxTokens = 4096 - countTokens(generatePrompt(fileContent, "stepOne"));
+    //let maxTokens = 4096 - countTokens(generatePrompt(fileContent, promptType));
+    const temp = 0;
 
     React.useEffect(() => {
         if(responseReceived && saveToDatabase){
@@ -39,7 +39,7 @@ function MainPage(){
             setSaveToDatabase(false);
             clearStateVariables([setLineCoverage,
                 setBranchCoverage, setPassedUnitTests, setFileContent, setResponse, setExplanation]);
-            promptType = "zero-shot";
+            promptType = "multi-step";
         }
     }, [saveToDatabase]);
 
