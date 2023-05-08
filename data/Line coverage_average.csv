@@ -1,0 +1,11 @@
+Test attempt,Line coverage
+multi-step_temp_0.csv,0.67
+multi-step_temp_05.csv,0.767
+multi-step_temp_1.csv,0.792
+one-shot_temp_0.csv,0.782
+one-shot_temp_05.csv,0.876
+one-shot_temp_1.csv,0.81
+zero-shot_temp_0.csv,0.847
+zero-shot_temp_05.csv,0.788
+zero-shot_temp_1.csv,0.809
+ChatGPT.csv,0.737
