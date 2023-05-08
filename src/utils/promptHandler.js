@@ -121,7 +121,8 @@ const stepOnePrompt = (promptData) => {
  * @returns {string} a String representation of the second step prompt in the multi-step prompt
  */
 const stepTwoPrompt = (promptData, explanation) => {
-    return "Generate unit tests using JUnit 4 for the given Java class and its explanation. Return code only." +
+    return "Generate unit tests using JUnit 4 for the given Java class and its explanation. " +
+        "Strive for maximum code coverage when generating the unit tests. Return code only." +
         "\n Java class: \n \"\"\"\"\"\" \n" + promptData + "\n \"\"\"\"\"\" \n Explanation: \n \"\"\"\"\"\" \n" +
         explanation +  "\n \"\"\"\"\"\" \n Unit tests: \n"
 }
