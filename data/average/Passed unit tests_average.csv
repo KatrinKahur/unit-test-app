@@ -1,11 +1,11 @@
 Test attempt,Passed unit tests
-multi-step_temp_0.csv,0.622
-multi-step_temp_05.csv,0.711
-multi-step_temp_1.csv,0.6
-one-shot_temp_0.csv,0.623
-one-shot_temp_05.csv,0.733
-one-shot_temp_1.csv,0.793
-zero-shot_temp_0.csv,0.71
-zero-shot_temp_05.csv,0.723
-zero-shot_temp_1.csv,0.759
-ChatGPT.csv,0.776
+multi-step_temp_0,62.2%
+multi-step_temp_05,71.1%
+multi-step_temp_1,60.0%
+one-shot_temp_0,62.3%
+one-shot_temp_05,73.3%
+one-shot_temp_1,79.3%
+zero-shot_temp_0,71.0%
+zero-shot_temp_05,72.3%
+zero-shot_temp_1,75.9%
+ChatGPT,77.6%
