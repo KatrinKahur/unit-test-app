@@ -10,7 +10,7 @@ function generatePrompt(promptData, promptType, context = "") {
     if (promptType === "zero-shot") {
         promptBody = zeroShotPrompt(promptData);
     } else if (promptType === "one-shot") {
-
+        promptBody = oneShotPrompt(promptData);
     } else if (promptType === "stepOne") {
         promptBody = stepOnePrompt(promptData);
     } else if (promptType === "stepTwo") {
@@ -29,6 +29,77 @@ function generatePrompt(promptData, promptType, context = "") {
 const zeroShotPrompt = (promptData) => {
     return "Generate unit tests for the specified Java class using JUnit 4, strive for maximum code" +
         " coverage when generating the unit tests. Return code only. \n\n Java class: \n \"\"\"\"\"\" \n" + promptData +
+        "\n \"\"\"\"\"\" \n Unit tests: ";
+}
+
+
+/**
+ * This component represents the one-shot prompt
+ * @param promptData input data, such as Java class in a unit generation request
+ * @returns {string} a String representation of the one-shot prompt
+ */
+const oneShotPrompt = (promptData) => {
+    return "Generate unit tests for the specified Java class using JUnit, strive for maximum code" +
+        " coverage when generating the unit tests. Return code only." +
+
+        "\n\n Java class: \n \"\"\"\"\"\" \n" +
+
+        "public class Calculator {\n" +
+          	"public int add(int a, int b) {\n" +
+          		"return a + b;\n" +
+          	"}\n\n" +
+
+          	"public int sub(int a, int b) {\n" +
+          		"return a - b;\n" +
+          	"}\n\n" +
+
+          	"public int multiply(int a, int b) {\n" +
+                "return a * b;\n" +
+            "}\n\n" +
+
+          	"public int divide(int a, int b) {\n" +
+          		"return a / b;\n" +
+          	"}\n" +
+        "}\n\n" +
+
+        "\n \"\"\"\"\"\" \n Unit tests: \n" +
+
+        "public class CalculatorTest {\n" +
+        	"@Test\n" +
+        	"public void testAdd() {\n" +
+        		"Calculator calculator = new Calculator();\n" +
+        		"int result = calculator.add(2, 2);\n" +
+        		"if (result != 4) {\n"  +
+        			"Assert.fail();\n" +
+        		"}\n" +
+        	"}\n\n" +
+
+        	"@Test\n" +
+        	"public void testSub() {\n" +
+        		"Calculator calculator = new Calculator();\n" +
+        		"Assert.assertEquals(0, calculator.sub(2, 2));\n" +
+        	"}\n\n" +
+
+        	"@Test\n" +
+            "public void testMultiply() {\n" +
+                "Calculator calculator = new Calculator();\n" +
+                "Assert.assertEquals(18, calculator.multiply(6, 3));\n" +
+            "}\n\n" +
+
+        	"@Test\n" +
+        	"public void testDivide() {\n" +
+        		"Calculator calculator = new Calculator();\n" +
+        		"Assert.assertEquals(2, calculator.divide(6, 3));\n" +
+        	"}\n\n" +
+
+        	"@Test(expected = ArithmeticException.class)\n" +
+        	"public void testDivideWillThrowExceptionWhenDivideOnZero() {\n" +
+        		"Calculator calculator = new Calculator();\n" +
+        		"calculator.divide(6, 0);\n" +
+        	"}\n" +
+        "}\n\n"+
+
+        "\n\n Java class: \n \"\"\"\"\"\" \n" + promptData +
         "\n \"\"\"\"\"\" \n Unit tests: ";
 }
 
@@ -54,6 +125,7 @@ const stepTwoPrompt = (promptData, explanation) => {
         "\n Java class: \n \"\"\"\"\"\" \n" + promptData + "\n \"\"\"\"\"\" \n Explanation: \n \"\"\"\"\"\" \n" +
         explanation +  "\n \"\"\"\"\"\" \n Unit tests: \n"
 }
+
 
 /**
  * This component represents the prompt body of the "Generate more unit tests" prompt
