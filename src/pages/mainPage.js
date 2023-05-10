@@ -25,10 +25,10 @@ function MainPage(){
     const [saveToDatabase, setSaveToDatabase] = React.useState(false);
     const [responseReceived, setResponseReceived] = React.useState(false);
     const [explanation, setExplanation] = React.useState("");
-    let promptType = "multi-step";
-    let maxTokens = 4096 - countTokens(generatePrompt(fileContent, "stepOne"));
-    //let maxTokens = 4096 - countTokens(generatePrompt(fileContent, promptType));
-    const temp = 0;
+    let promptType = "one-shot";
+    //let maxTokens = 4096 - countTokens(generatePrompt(fileContent, "stepOne"));
+    let maxTokens = 4096 - countTokens(generatePrompt(fileContent, promptType));
+    const temp = 0.5;
 
     React.useEffect(() => {
         if(responseReceived && saveToDatabase){
@@ -70,7 +70,7 @@ function MainPage(){
     return(
         <body>
         <div>
-            <h1 className="toolName">Java Unit Test Generation AI (JUTGAI)</h1>
+            <h1 className="toolName">Java Unit Testing with AI (JUT-AI)</h1>
             {/*Generation Of Unit Test In Java (GOUTIJ)*/}
             <form onSubmit={(event) => {
                 event.preventDefault();
@@ -112,10 +112,10 @@ function MainPage(){
                         </SyntaxHighlighter>
                     </div>
                 </div>
-                    <button className="moreTestsButton" onClick={() => { promptType = "more";
+                    {/**<button className="moreTestsButton" onClick={() => { promptType = "more";
                         setIsLoading(true);
                         setGenerateUnitTests(true);
-                    }}>Generate more</button>
+                    }}>Generate more</button>**/}
                 <form className="testForm" id="result-form"
                       onSubmit={(event) =>
                       {event.preventDefault();setSaveToDatabase(true);}}>
