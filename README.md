@@ -1,1 +1,1 @@
-# unit-test-app
+# Java Unit Testing with AI (JUT-AI)
