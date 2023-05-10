@@ -8,7 +8,3 @@ cd unit-test-app
 ```bash
 npm install
 ```
-## Run the app
-```bash
-npm start
-```
