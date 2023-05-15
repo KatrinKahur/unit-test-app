@@ -2,8 +2,8 @@ Test attempt,Branch coverage
 multi-step_temp_0,66.9%
 multi-step_temp_05,75.3%
 multi-step_temp_1,76.3%
-one-shot_temp_0,77.7%
-one-shot_temp_05,84.2%
+one-shot_temp_0,69.2%
+one-shot_temp_05,77.1%
 one-shot_temp_1,78.6%
 zero-shot_temp_0,82.3%
 zero-shot_temp_05,77.1%
