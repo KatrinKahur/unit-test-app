@@ -5,8 +5,8 @@ HexToOct,100%,100%,100%
 AmicableNumber,50%,40%,67%
 Area,92%,94%,90%
 Factorial,100%,100%,100%
-EulersFunction,75%,100%,0%
-Huffman,67%,71%,0%
+EulersFunction,0%,0%,0%
+Huffman,0%,0%,0%
 MiniMaxAlgorithm,78%,81%,80%
 SieveOfEratosthenes,100%,100%,80%
 Sudoku,83%,81%,50%
