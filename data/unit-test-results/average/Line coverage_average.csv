@@ -2,8 +2,8 @@ Test attempt,Line coverage
 multi-step_temp_0,67.0%
 multi-step_temp_05,76.6%
 multi-step_temp_1,79.2%
-one-shot_temp_0,78.2%
-one-shot_temp_05,87.6%
+one-shot_temp_0,68.2%
+one-shot_temp_05,79.1%
 one-shot_temp_1,81.0%
 zero-shot_temp_0,84.7%
 zero-shot_temp_05,78.8%
