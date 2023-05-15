@@ -2,8 +2,8 @@ Test attempt,Total average
 multi-step_temp_0,65.4%
 multi-step_temp_05,74.4%
 multi-step_temp_1,71.8%
-one-shot_temp_0,72.7%
-one-shot_temp_05,81.7%
+one-shot_temp_0,66.6%
+one-shot_temp_05,76.5%
 one-shot_temp_1,79.6%
 zero-shot_temp_0,79.3%
 zero-shot_temp_05,76.1%
