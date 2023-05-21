@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+body {
+/*background-color: #D0DBE7;*/
+font-family: Andale Mono;
+background: rgb(231,169,196);
+background: linear-gradient(90deg, rgba(231,169,196,1) 0%, rgba(172,209,252,1) 57%, rgba(166,172,241,1) 100%);
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -37,27 +44,46 @@
   }
 }
 
+.toolNameAbrev {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 70px;
+}
+
 .toolName {
   text-align: center;
-  margin-top: 70px;
+  margin-top: -15px;
+  font-size: 20px;
+  text-decoration-line: underline;
+  /*display: inline;*/
+}
+
+/*.underlineText {
+  display:inline;
+}*/
+
+input[type=file] {
+    padding-bottom: 5px;
 }
 
 input[type=file]::file-selector-button {
-  width: 80px;
+  width: 100px;
   height: 35px;
   border: none;
   border-radius: 5px;
-  background-color: #c5c5c5;
+  background-color: #F4F4F4;
+  box-shadow: 3px 3px 4px #bbbbbb;
+  margin-left: 27px;
 }
 
 input[type=file]::file-selector-button:hover {
-  background-color: #a6a6a6;
+  background-color: #EAEAEA;
   border: none;
 }
 
 .inputButt {
   text-align: center;
-  margin-top: 3%;
+  margin-top: 5%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -71,7 +97,7 @@ input[type=file]::file-selector-button:hover {
   text-align: left;
   height: 550px;
   /*background-color: rgb(223, 223, 223);*/
-  background-color: rgb(35, 35, 35);
+  background-color: white;
   margin-right: 15px;
   padding: 30px;
   border-radius: 15px;
@@ -82,7 +108,7 @@ input[type=file]::file-selector-button:hover {
   text-align: left;
   height: 550px;
   /*background-color: rgb(223, 223, 223);*/
-  background-color: rgb(35, 35, 35);
+  background-color: white;
   margin: 0 auto;
   padding: 30px;
   border-radius: 15px;
@@ -119,12 +145,13 @@ pre {
   margin-left: auto;
   margin-right: auto;
   margin-top: 1%;
-  background-color: #c5c5c5;
+  background-color: #F4F4F4;
   border: none;
+  box-shadow: 3px 3px 4px #bbbbbb;
 }
 
 .testGeneratorButton:hover {
-  background-color: #a6a6a6;
+  background-color: #EAEAEA;
   border: none;
 }
 
@@ -136,12 +163,13 @@ pre {
   margin-top: 1%;
   margin-left: auto;
   margin-right: 190px;
-  background-color: #c5c5c5;
+  background-color: #F4F4F4;
   border: none;
+  box-shadow: 3px 3px 4px #bbbbbb;
 }
 
 .moreTestsButton:hover {
-  background-color: #a6a6a6;
+  background-color: #EAEAEA;
   border: none;
 }
 
@@ -158,11 +186,12 @@ pre {
   height: 35px;
   border: none;
   border-radius: 5px;
-  background-color: #c5c5c5;
+  background-color: #F4F4F4;
+  box-shadow: 3px 3px 4px #bbbbbb;
 }
 
 .testSubmitButt:hover {
-  background-color: #a6a6a6;
+  background-color: #EAEAEA;
   border: none;
 }
 
@@ -172,5 +201,5 @@ pre {
 
 .inputBox {
   width: 400px;
-  height: 500px;
+  height: 50px;
 }

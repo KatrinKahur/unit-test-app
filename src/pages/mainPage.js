@@ -4,11 +4,14 @@ import generatePrompt from "../utils/promptHandler";
 import '../css/App.css';
 import documentTestAttempt from "../database/dbHandler";
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import railscasts from "react-syntax-highlighter/dist/cjs/styles/hljs/railscasts";
+//import railscasts from "react-syntax-highlighter/dist/cjs/styles/hljs/railscasts";
 import {Spinner} from "react-bootstrap";
 import {clearStateVariables} from "../utils/stateVariables";
 import {countTokens} from "../utils/tokenCounter";
 import handleRequest from "../api/apiHandler";
+import { a11yLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { gradientLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+
 
 /**
  * This function represents the main page of the JUTGAI application.
@@ -25,10 +28,10 @@ function MainPage(){
     const [saveToDatabase, setSaveToDatabase] = React.useState(false);
     const [responseReceived, setResponseReceived] = React.useState(false);
     const [explanation, setExplanation] = React.useState("");
-    let promptType = "multi-step";
-    let maxTokens = 4096 - countTokens(generatePrompt(fileContent, "stepOne"));
-    //let maxTokens = 4096 - countTokens(generatePrompt(fileContent, promptType));
-    const temp = 0;
+    let promptType = "zero-shot";
+    //let maxTokens = 4096 - countTokens(generatePrompt(fileContent, "stepOne"));
+    let maxTokens = 4096 - countTokens(generatePrompt(fileContent, promptType));
+    const temp = 1;
 
     React.useEffect(() => {
         if(responseReceived && saveToDatabase){
@@ -70,7 +73,9 @@ function MainPage(){
     return(
         <body>
         <div>
-            <h1 className="toolName">Java Unit Test Generation AI (JUTGAI)</h1>
+            <h1 className="toolNameAbrev">JUTAI</h1>
+            <p className="toolName">Java Unit Testing with AI</p>
+            {/*<p className="underlineText">test</p>*/}
             {/*Generation Of Unit Test In Java (GOUTIJ)*/}
             <form onSubmit={(event) => {
                 event.preventDefault();
@@ -96,7 +101,7 @@ function MainPage(){
                             wrapLines={true}
                             lineProps={{style: {whiteSpace: 'pre-wrap'}}}
                             language="java"
-                            style={railscasts}>{fileContent}
+                            style={a11yLight}>{fileContent}
                         </SyntaxHighlighter>
                     </div>
                 </div>
@@ -108,7 +113,7 @@ function MainPage(){
                             wrapLines={true}
                             lineProps={{style: {whiteSpace: 'pre-wrap'}}}
                             language="java"
-                            style={railscasts}>{response}
+                            style={a11yLight}>{response}
                         </SyntaxHighlighter>
                     </div>
                 </div>
