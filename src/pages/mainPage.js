@@ -117,10 +117,10 @@ function MainPage(){
                         </SyntaxHighlighter>
                     </div>
                 </div>
-                    <button className="moreTestsButton" onClick={() => { promptType = "more";
+                    {/**<button className="moreTestsButton" onClick={() => { promptType = "more";
                         setIsLoading(true);
                         setGenerateUnitTests(true);
-                    }}>Generate more</button>
+                    }}>Generate more</button>**/}
                 <form className="testForm" id="result-form"
                       onSubmit={(event) =>
                       {event.preventDefault();setSaveToDatabase(true);}}>

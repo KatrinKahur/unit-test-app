@@ -1,0 +1,21 @@
+Java class,Branch coverage,Line coverage,Passed unit tests
+BinaryToDecimal,100%,100%,75%
+BinaryToHexadecimal,100%,100%,100%
+HexToOct,50%,47%,50%
+AmicableNumber,50%,40%,50%
+Area,58%,60%,95%
+Factorial,100%,100%,100%
+EulersFunction,0%,0%,0%
+Huffman,67%,100%,100%
+MiniMaxAlgorithm,78%,77%,75%
+SieveOfEratosthenes,100%,100%,75%
+Sudoku,33%,28%,50%
+FibonacciSearch,58%,88%,50%
+LinearSearch,100%,100%,100%
+PerfectBinarySearch,100%,100%,100%
+BubbleSort,100%,100%,100%
+InsertionSort,94%,81%,100%
+QuickSort,100%,100%,100%
+Alphabetical,83%,100%,83%
+HammingDistance,100%,100%,100%
+ReverseString,100%,100%,83%
