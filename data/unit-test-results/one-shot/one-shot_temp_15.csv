@@ -4,7 +4,7 @@ HexToOct,0%,0%,0%
 Area,25%,32%,60%
 AmicableNumber,50%,40%,75%
 EulersFunction,0%,0%,0%
-HuffmanNode,67%,100%,100%
+Huffman,67%,100%,100%
 SieveOfEratosthenes,100%,100%,80%
 Sudoku,83%,81%,75%
 MiniMaxAlgorithm,22%,35%,50%
