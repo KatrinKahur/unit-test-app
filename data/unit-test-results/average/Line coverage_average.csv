@@ -2,10 +2,13 @@ Test attempt,Line coverage
 multi-step_temp_0,67.0%
 multi-step_temp_05,76.6%
 multi-step_temp_1,79.2%
+multi-step_temp_15,58.4%
 one-shot_temp_0,68.2%
 one-shot_temp_05,79.1%
 one-shot_temp_1,81.0%
+one-shot_temp_15,62.5%
 zero-shot_temp_0,84.7%
 zero-shot_temp_05,78.8%
 zero-shot_temp_1,80.9%
+zero-shot_temp_15,61.0%
 ChatGPT,73.7%
