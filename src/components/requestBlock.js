@@ -8,6 +8,7 @@ export const RequestBlock = ({javaClass}) => {
             <h3>Java class: </h3>
             <div className="requestBlock">
                 <SyntaxHighlighter
+                    data-cy="request-block"
                     data-testid="request-block"
                     wrapLines={true}
                     lineProps={{style: {whiteSpace: 'pre-wrap'}}}

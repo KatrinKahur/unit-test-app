@@ -1,10 +1,10 @@
 import React from "react";
 
-export const AppTitle = ({title}) => {
+export const AppTitle = ({titleOne, titleTwo}) => {
     return(
         <>
-            <h1 className="toolNameAbrev">JUTAI</h1>
-            <p className="toolName">Java Unit Testing with AI</p>
+            <h1 data-cy="titleOne" className="toolNameAbrev">{titleOne}</h1>
+            <p data-cy="titleTwo" className="toolName">{titleTwo}</p>
         </>
     )
 }

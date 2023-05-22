@@ -8,8 +8,9 @@ export const ResponseBlock = ({loadingStatus, response}) => {
         <div className="responseBlockWrapper">
             <h3>Tests: </h3>
             <div className="responseBlock">
-                {loadingStatus && <Spinner animation="border" variant="secondary" />}
+                {loadingStatus && <Spinner data-cy="spinner" animation="border" variant="secondary" />}
                 <SyntaxHighlighter
+                    data-cy="response-block"
                     wrapLines={true}
                     lineProps={{style: {whiteSpace: 'pre-wrap'}}}
                     language="java"

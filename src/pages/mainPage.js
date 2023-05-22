@@ -51,15 +51,10 @@ function MainPage(){
         } else {
             if (showErrorMsg){
                 setShowErrorMsg(false);
+
             }
         }
     }, [correctFileType])
-
-    React.useEffect(() => {
-        if(!showErrorMsg){
-            setCorrectFileType(true);
-        }
-    }, [showErrorMsg])
 
     React.useEffect(() => {
         if(responseReceived && saveToDatabase){
@@ -104,7 +99,7 @@ function MainPage(){
         <body>
         <div>
             <ErrorMessage message={errorMsg} show={showErrorMsg} setShow={setShowErrorMsg}/>
-            <AppTitle title="Java Unit Testing with AI (JUTAI)"/>
+            <AppTitle titleOne="JUTAI" titleTwo="Java Unit Testing with AI"/>
             <UnitTestGenerationForm onSubmit={submitUnitTests}
                                     storeFileContent={setFileContent}
                                     setCorrectFileType={setCorrectFileType}/>

@@ -9,7 +9,7 @@ export const ErrorMessage = ({message, show, setShow}) => {
 
     if(show){
         return (
-            <Alert data-testid="error-message" style={{position: "fixed", top:10, left: 0, right: 0, zIndex: 999}} variant="secondary" onClose={() => setShow(false)} dismissible>
+            <Alert data-cy="error-message" style={{position: "fixed", top:'6%', left: '60%', right: '10%', zIndex: 999}} variant="danger" onClose={() => setShow(false)} dismissible>
                 <Alert.Heading>Error!</Alert.Heading>
                 <p>{message}</p>
             </Alert>

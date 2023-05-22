@@ -9,6 +9,7 @@ export const FileUploadButton = ({onChange}) => {
             <input type="file"
                    id="file-input"
                    data-testid="file-input"
+                   data-cy="file-input"
                    onChange={onChange}
                    required
             />
