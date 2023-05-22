@@ -1,5 +1,5 @@
 import SyntaxHighlighter from "react-syntax-highlighter";
-import railscasts from "react-syntax-highlighter/dist/cjs/styles/hljs/railscasts";
+import { a11yLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import React from "react";
 
 export const RequestBlock = ({javaClass}) => {
@@ -12,7 +12,7 @@ export const RequestBlock = ({javaClass}) => {
                     wrapLines={true}
                     lineProps={{style: {whiteSpace: 'pre-wrap'}}}
                     language="java"
-                    style={railscasts}>{javaClass}
+                    style={a11yLight}>{javaClass}
                 </SyntaxHighlighter>
             </div>
         </div>
