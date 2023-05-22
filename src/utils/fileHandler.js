@@ -1,4 +1,4 @@
-function handleFile(event, callback){
+function handleFile(event, callback, fileTypeStatus){
     const file = event.target.files[0];
     if (!file) {
         return;
@@ -6,9 +6,19 @@ function handleFile(event, callback){
     const reader = new FileReader();
     reader.onload = function(e) {
         let contents = e.target.result;
-        callback(contents);
+        if(checkForFileType(['.java'])){
+            fileTypeStatus(true);
+            callback(contents);
+        } else {
+            fileTypeStatus(false);
+        }
     };
     reader.readAsText(file);
 }
 
-export default handleFile;
+function checkForFileType(fileType){
+    var fileName = document.getElementById("file-input").value;
+    return (new RegExp('(' + fileType.join('|').replace(/\./g, '\\.') + ')$', "i")).test(fileName);
+}
+
+export { handleFile, checkForFileType };

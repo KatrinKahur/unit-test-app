@@ -14,7 +14,7 @@ async function getResponse(request, maxTokens, temp) {
         apiKey: process.env.REACT_APP_OPENAI_API_KEY
     });
     const openai = new OpenAIApi(configuration);
-    console.log("Max tokens: " + maxTokens + "\n");
+    console.log("Max tokens in the Request: " + maxTokens + "\n");
     console.log("Temp is: " + temp+ "\n");
     console.log("Request is: \n", request);
     try {
@@ -24,9 +24,11 @@ async function getResponse(request, maxTokens, temp) {
             max_tokens: maxTokens,
             temperature: temp
         });
+        console.log("Returning content")
         return response.data.choices[0].message.content;
     } catch (error) {
         console.log("Error: " + error);
+        console.log("Returning error")
         return error;
     }
 }

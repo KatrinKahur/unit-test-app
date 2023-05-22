@@ -1,17 +1,20 @@
-import handleFile from "../utils/fileHandler";
 import React from "react";
 import generatePrompt from "../utils/promptHandler";
 import '../css/App.css';
 import documentTestAttempt from "../database/dbHandler";
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import railscasts from "react-syntax-highlighter/dist/cjs/styles/hljs/railscasts";
-import {Spinner} from "react-bootstrap";
 import {clearStateVariables} from "../utils/stateVariables";
 import {countTokens} from "../utils/tokenCounter";
 import handleRequest from "../api/apiHandler";
+import {UnitTestGenerationForm} from "../components/unitTestGenerationForm";
+import {AppTitle} from "../components/appTitle";
+import {RequestBlock} from "../components/requestBlock";
+import {ResponseBlock} from "../components/responseBlock";
+import {DeveloperForm} from "../components/developerForm";
+import {ErrorMessage} from "../components/errorMessage";
+
 
 /**
- * This function represents the main page of the JUTGAI application.
+ * This function represents the main page of the JUTAI application.
  * @returns {JSX.Element} the main page
  */
 function MainPage(){
@@ -25,10 +28,38 @@ function MainPage(){
     const [saveToDatabase, setSaveToDatabase] = React.useState(false);
     const [responseReceived, setResponseReceived] = React.useState(false);
     const [explanation, setExplanation] = React.useState("");
-    let promptType = "one-shot";
-    //let maxTokens = 4096 - countTokens(generatePrompt(fileContent, "stepOne"));
-    let maxTokens = 4096 - countTokens(generatePrompt(fileContent, promptType));
+    const [correctFileType, setCorrectFileType] = React.useState(true);
+    const [errorMsg, setErrorMsg] = React.useState("");
+    const [showErrorMsg, setShowErrorMsg] = React.useState(false);
+    const promptType = "zero-shot";
+    const maxTokens = 4096 - countTokens(generatePrompt(fileContent, promptType));
     const temp = 0.5;
+
+    function submitUnitTests(event){
+        event.preventDefault();
+        if(correctFileType){
+            setResponse("");
+            setIsLoading(true);
+            setGenerateUnitTests(true);
+        }
+    }
+
+    React.useEffect(() => {
+        if(!correctFileType){
+            setErrorMsg("Wrong file format. Please try again!")
+            setShowErrorMsg(true);
+        } else {
+            if (showErrorMsg){
+                setShowErrorMsg(false);
+            }
+        }
+    }, [correctFileType])
+
+    React.useEffect(() => {
+        if(!showErrorMsg){
+            setCorrectFileType(true);
+        }
+    }, [showErrorMsg])
 
     React.useEffect(() => {
         if(responseReceived && saveToDatabase){
@@ -39,7 +70,6 @@ function MainPage(){
             setSaveToDatabase(false);
             clearStateVariables([setLineCoverage,
                 setBranchCoverage, setPassedUnitTests, setFileContent, setResponse, setExplanation]);
-            promptType = "multi-step";
         }
     }, [saveToDatabase]);
 
@@ -49,14 +79,18 @@ function MainPage(){
 
     React.useEffect(() => {
         if(generateUnitTests) {
+            console.log("Prompt type is before: " + promptType);
             handleRequest(fileContent, promptType, maxTokens, temp).then((data) => {
-                if (typeof data === 'string'){
+                console.log("Prompt type is after: " + promptType);
+                if (typeof data === 'string') {
                     setResponse(response + "\n" + data);
                 } else if (typeof data === 'object') {
-                    setResponse(response + "\n" + data.response);
-                    setExplanation(data.explanation);
-                } else {
-                    setResponse("Oops! Something went wrong.");
+                    if(data.response.length > 0){
+                        setResponse(response + "\n" + data.response);
+                        setExplanation(data.explanation);
+                    } else {
+                        setResponse("Oops! Something went wrong.")
+                    }
                 }
             }).then(() => {
                 setIsLoading(false);
@@ -66,78 +100,22 @@ function MainPage(){
         }
     }, [generateUnitTests]);
 
-
     return(
         <body>
         <div>
-            <h1 className="toolName">Java Unit Testing with AI (JUT-AI)</h1>
-            {/*Generation Of Unit Test In Java (GOUTIJ)*/}
-            <form onSubmit={(event) => {
-                event.preventDefault();
-                setResponse("");
-                setIsLoading(true);
-                setGenerateUnitTests(true);
-            }}>
-                <div className="inputButt">
-                <input type="file"
-                       id="file-input"
-                       onChange={(event) => handleFile(event, setFileContent)}
-                       required
-                />
-                </div>
-                <input type="submit" value="Generate unit tests!"
-                        className="testGeneratorButton" />
-            </form>
+            <ErrorMessage message={errorMsg} show={showErrorMsg} setShow={setShowErrorMsg}/>
+            <AppTitle title="Java Unit Testing with AI (JUTAI)"/>
+            <UnitTestGenerationForm onSubmit={submitUnitTests}
+                                    storeFileContent={setFileContent}
+                                    setCorrectFileType={setCorrectFileType}/>
             <div className="codeBlockWrapper">
-                <div className="requestBlockWrapper">
-                    <h3>Java class: </h3>
-                    <div className="requestBlock">
-                        <SyntaxHighlighter
-                            wrapLines={true}
-                            lineProps={{style: {whiteSpace: 'pre-wrap'}}}
-                            language="java"
-                            style={railscasts}>{fileContent}
-                        </SyntaxHighlighter>
-                    </div>
-                </div>
-                <div className="responseBlockWrapper">
-                    <h3>Tests: </h3>
-                    <div className="responseBlock">
-                        {isLoading && <Spinner animation="border" variant="light" />}
-                        <SyntaxHighlighter
-                            wrapLines={true}
-                            lineProps={{style: {whiteSpace: 'pre-wrap'}}}
-                            language="java"
-                            style={railscasts}>{response}
-                        </SyntaxHighlighter>
-                    </div>
-                </div>
-                    {/**<button className="moreTestsButton" onClick={() => { promptType = "more";
-                        setIsLoading(true);
-                        setGenerateUnitTests(true);
-                    }}>Generate more</button>**/}
-                <form className="testForm" id="result-form"
-                      onSubmit={(event) =>
-                      {event.preventDefault();setSaveToDatabase(true);}}>
-                    <div>
-                        <label className="inputSquare">
-                            <p className="testText">Line Coverage</p>
-                            <textarea type="text" name="name" className="inputBox" required="required"
-                            onChange={(e) => setLineCoverage(e.target.value)}/>
-                        </label>
-                        <label className="inputSquare">
-                            <p className="testText">Branch Coverage</p>
-                            <textarea type="text" name="name" className="inputBox" required="required"
-                            onChange={(e) => setBranchCoverage(e.target.value)}/>
-                        </label>
-                        <label className="inputSquare">
-                            <p className="testText">Passed Unit Tests</p>
-                            <textarea type="text" name="name" className="inputBox" required="required"
-                            onChange={(e) => setPassedUnitTests(e.target.value)}/>
-                        </label>
-                    </div>
-                    <input type="submit" value="Submit" className="testSubmitButt"/>
-                </form>
+                <RequestBlock javaClass={fileContent}/>
+                <ResponseBlock loadingStatus={isLoading} response={response}/>
+                <DeveloperForm
+                    onSubmit={(event) => {event.preventDefault();setSaveToDatabase(true)}}
+                    setLineCoverage={setLineCoverage}
+                    setBranchCoverage={setBranchCoverage}
+                    setPassedUnitTests={setPassedUnitTests} />
             </div>
         </div>
         </body>
