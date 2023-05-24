@@ -10,6 +10,7 @@ function handleFile(event, callback, fileTypeStatus){
             fileTypeStatus(true);
             callback(contents);
         } else {
+            console.log("file type status false");
             fileTypeStatus(false);
         }
     };

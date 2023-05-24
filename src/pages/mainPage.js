@@ -11,8 +11,9 @@ import {RequestBlock} from "../components/requestBlock";
 import {ResponseBlock} from "../components/responseBlock";
 import {DeveloperForm} from "../components/developerForm";
 import {ErrorMessage} from "../components/errorMessage";
+import {MoreTestsButton} from "../components/moreTestsButton";
 
-
+let promptType = "one-shot";
 /**
  * This function represents the main page of the JUTAI application.
  * @returns {JSX.Element} the main page
@@ -31,17 +32,26 @@ function MainPage(){
     const [correctFileType, setCorrectFileType] = React.useState(true);
     const [errorMsg, setErrorMsg] = React.useState("");
     const [showErrorMsg, setShowErrorMsg] = React.useState(false);
-    const promptType = "zero-shot";
     const maxTokens = 4096 - countTokens(generatePrompt(fileContent, promptType));
-    const temp = 0.5;
+    const temp = 1;
 
     function submitUnitTests(event){
         event.preventDefault();
+        if(promptType === "more"){
+            promptType = "one-shot";
+        }
         if(correctFileType){
             setResponse("");
             setIsLoading(true);
             setGenerateUnitTests(true);
         }
+    }
+
+    function generateMoreTests(){
+        promptType = "more";
+        console.log("Prompt changed to: ", promptType)
+        setIsLoading(true);
+        setGenerateUnitTests(true);
     }
 
     React.useEffect(() => {
@@ -106,11 +116,12 @@ function MainPage(){
             <div className="codeBlockWrapper">
                 <RequestBlock javaClass={fileContent}/>
                 <ResponseBlock loadingStatus={isLoading} response={response}/>
-                <DeveloperForm
+                <MoreTestsButton onClick={generateMoreTests}/>
+                {/**<DeveloperForm
                     onSubmit={(event) => {event.preventDefault();setSaveToDatabase(true)}}
                     setLineCoverage={setLineCoverage}
                     setBranchCoverage={setBranchCoverage}
-                    setPassedUnitTests={setPassedUnitTests} />
+                    setPassedUnitTests={setPassedUnitTests} />**/}
             </div>
         </div>
         </body>

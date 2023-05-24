@@ -3,6 +3,12 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import React from "react";
 import {a11yLight} from "react-syntax-highlighter/dist/esm/styles/hljs";
 
+/**
+ * This component represents the response block, where the generated unit tests are displayed for the user.
+ * @param loadingStatus The loading status
+ * @param response The generated unit tests
+ * @returns {JSX.Element} The response block
+ */
 export const ResponseBlock = ({loadingStatus, response}) => {
     return(
         <div className="responseBlockWrapper">

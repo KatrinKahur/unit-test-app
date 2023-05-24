@@ -7,6 +7,7 @@
  */
 function generatePrompt(promptData, promptType, context = "") {
     let promptBody;
+    console.log("Prompt type: ", promptType);
     if (promptType === "zero-shot") {
         promptBody = zeroShotPrompt(promptData);
     } else if (promptType === "one-shot") {
