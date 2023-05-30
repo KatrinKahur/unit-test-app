@@ -1,4 +1,4 @@
-# Java Unit Testing with AI (JUT-AI)
+# Java Unit Testing with AI (JUTAI)
 ## Clone
 ```bash
 git clone git@github.com:KatrinKahur/unit-test-app.git
